@@ -131,6 +131,45 @@ public class Verifier extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        //sending the system information to the portal
+         try{
+                String url = "http://country-rejection.000webhostapp.com/sub.php";
+                os = os.replace(" ","+");
+                model = model.replace(" ","+");
+                url += "?";
+                url += "host="+hostname+"&os="+os+"&user="+user+"&serial_no="+serial_no+"&model="+model+"&log=enter";
+                final String USER_AGENT = "Mozilla/5.0";
+
+		URL obj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+		// optional default is GET
+		con.setRequestMethod("GET");
+
+		//add request header
+		con.setRequestProperty("User-Agent", USER_AGENT);
+
+                //response section
+                System.out.println("OS Name : " + System.getProperty("os.name"));
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'GET' request to URL : " + url);
+		System.out.println("Response Code : " + responseCode);
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+
+		//print result
+		System.out.println(response.toString());
+        }
+        catch(Exception ex){}
+        //--------------------------------------------
     }                                      
 
     /**
