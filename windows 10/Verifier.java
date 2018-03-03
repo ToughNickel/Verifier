@@ -39,7 +39,7 @@ public class Verifier extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         lblEmail.setText("Enter your email");
 
